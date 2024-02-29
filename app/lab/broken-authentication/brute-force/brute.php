@@ -11,14 +11,14 @@ if(isset($_POST['username']) && isset($_POST['password'])  ){
     ));
     $_select = $q -> fetch();
 
-    if ( isset($_select['id'])) {
+    if ( isset($_select)) {
 
         session_start();
         $_SESSION['username'] = $_POST['username'];
-        $html =$strings["cong"];
+        $html =["cong"];
         //header("Location: index.php");
     } else {
-        $html=$strings["wrong"];
+        $html=["wrong"];
     }
 
 }
