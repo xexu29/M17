@@ -13,8 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         //Check: Is there a registration with the same email??
-        $kontrolSql = "SELECT * FROM kayit WHERE email = '$email'";
-        $kontrolSonuc = $db->query($kontrolSql);
+        $kontrolSql = "SELECT * FROM kayit WHERE email = ?";
+        $kontrolSonuc = $db->prepare($kontrolSql);
+        $kontrolSonuc->execute([$email]);
+
         $results = $kontrolSonuc->fetchAll(PDO::FETCH_ASSOC);
         if (count($results) > 0) {
             // A registration with the same email has been found, issue a warning..
